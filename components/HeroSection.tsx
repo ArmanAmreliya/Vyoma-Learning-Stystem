@@ -1,113 +1,131 @@
-
-import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useLayoutEffect } from 'react';
+import { Button } from "./ui/button";
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import gsap from 'gsap';
-import { ChevronRight, Brain, Globe, Layers } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
 
 const HeroSection: React.FC = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
+    const heroRef = useRef<HTMLDivElement>(null);
+    const bgRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Reveal Text
-      gsap.from('.hero-text-item', {
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            // Timeline for entrance
+            const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      // Floating Cards
-      gsap.to('.floating-card', {
-        y: -20,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        stagger: 0.5,
-        ease: 'sine.inOut',
-      });
-    }, containerRef);
+            // 1. Overlay fades in with background
+            tl.fromTo(bgRef.current, 
+                { opacity: 0, scale: 1.1 }, 
+                { opacity: 0.65, scale: 1, duration: 1.5 }
+            );
 
-    return () => ctx.revert();
-  }, []);
+        }, heroRef);
 
-  return (
-    <section ref={containerRef} className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#F8FAFC]">
-      {/* Background Shapes */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[600px] h-[600px] bg-[#06B6D4]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/4 w-[500px] h-[500px] bg-[#1E3A8A]/5 rounded-full blur-3xl pointer-events-none" />
+        return () => ctx.revert();
+    }, []);
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
-        <div ref={textRef} className="relative z-10">
-          <div className="hero-text-item inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold uppercase tracking-widest mb-6">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#06B6D4] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#06B6D4]"></span>
-            </span>
-            Next-Gen Learning
-          </div>
-          <h1 className="hero-text-item text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8">
-            Building India’s First <span className="text-gradient">Complete</span> Learning Ecosystem
-          </h1>
-          <p className="hero-text-item text-xl text-[#64748B] mb-10 max-w-lg leading-relaxed">
-            Vyoma Learning Systems integrates academics, skills, community, and industry exposure to prepare students from school to career.
-          </p>
-          <div className="hero-text-item flex flex-col sm:flex-row gap-4">
-            <Link to="/curio" className="px-8 py-4 rounded-2xl gradient-main text-white font-bold flex items-center justify-center gap-2 hover:shadow-2xl hover:shadow-blue-500/20 transition-all active:scale-95">
-              Explore Curio <ChevronRight size={20} />
-            </Link>
-            <Link to="/ecosystem" className="px-8 py-4 rounded-2xl border-2 border-[#1E3A8A] text-[#1E3A8A] font-bold flex items-center justify-center gap-2 hover:bg-[#1E3A8A]/5 transition-all active:scale-95">
-              View Ecosystem
-            </Link>
-          </div>
-        </div>
+    const headingVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3,
+            }
+        }
+    };
 
-        <div ref={cardsRef} className="relative hidden lg:block">
-          <div className="relative aspect-square">
-            {/* Main Illustration Placeholder */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-[40px] shadow-inner flex items-center justify-center">
-              <img src="https://picsum.photos/600/600?random=1" className="w-[80%] h-[80%] object-cover rounded-3xl opacity-20 mix-blend-multiply" alt="Abstract" />
+    const wordVariants = {
+        hidden: { opacity: 0, y: 50, rotateX: -40 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            rotateX: 0,
+            transition: {
+                type: "spring",
+                damping: 20,
+                stiffness: 100
+            }
+        }
+    };
+
+    return (
+        <section ref={heroRef} className="relative w-full h-[calc(100vh-64px)] flex items-center overflow-hidden bg-[#0F172A]">
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0 w-full h-full">
+                <img 
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHsIV8wozH4pWuBlbSbMsV1oW8G79lF-BpAxF7eYdePTM1r0awE8BQDoKVKnu8HK7xqfqQhrHnXOks1n7Scd-KgIJIFFwKoJgUyAcoZCARGi92AlwHJ0pq_7efmTVYZsvI_YMgYiqdXszqEztb0oEDPh0LGftC3BcN9fYyFKcNfHW8diBF4vQo-2Fbtz2eXQ5qsT_OkiyvqVd91hYJ--NMQgXjj3nCqTTtVRldqk4Ydch4PUV12oucc7Cr8exrbVpUa53Yz7_nANvS" 
+                    alt="Students studying together in a modern library environment" 
+                    className="object-cover w-full h-full"
+                />
+                {/* Dark Overlay - Opacity ~0.65 as requested */}
+                <div ref={bgRef} className="absolute inset-0 bg-black opacity-65"></div>
             </div>
 
-            {/* Floating UI Cards */}
-            <div className="floating-card absolute top-10 -left-10 w-64 glass-card p-6 rounded-3xl shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center">
-                <Layers size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-[#1E3A8A]">3D Learning</h4>
-                <p className="text-xs text-[#64748B]">Visualise abstract concepts</p>
-              </div>
-            </div>
+            {/* Content Container */}
+            <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 lg:px-0 flex flex-col items-start justify-center h-full">
+                <div className="max-w-3xl space-y-8">
+                    {/* Heading */}
+                    <motion.h1 
+                        initial="hidden"
+                        animate="visible"
+                        variants={headingVariants}
+                        className="text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-[4.5rem] uppercase font-['Space_Grotesk'] perspective-1000"
+                    >
+                        {/* Word by word animation */}
+                        <span className="inline-block mr-4">
+                            <motion.span variants={wordVariants} className="inline-block">BETTER</motion.span>
+                        </span>
+                        <span className="inline-block mr-4">
+                            <motion.span variants={wordVariants} className="inline-block">EDUCATION</motion.span>
+                        </span>
+                        <span className="inline-block mr-4">
+                            <motion.span variants={wordVariants} className="inline-block">FOR</motion.span>
+                        </span>
+                        <br className="md:hidden" />
+                        <span className="inline-block text-blue-800">
+                             <span className="inline-block mr-4">
+                                <motion.span variants={wordVariants} className="inline-block">BETTER</motion.span>
+                            </span>
+                            <span className="inline-block">
+                                <motion.span variants={wordVariants} className="inline-block">WORLD</motion.span>
+                            </span>
+                        </span>
+                    </motion.h1>
+                    
+                    {/* Paragraph */}
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.8 }}
+                        className="max-w-xl text-lg font-light leading-relaxed text-gray-200 md:text-xl font-['Space_Grotesk']"
+                    >
+                        Vyoma Learning Systems integrates academic foundations, skill development, and industry exposure for students from Class 9 through professional careers.
+                    </motion.p>
 
-            <div className="floating-card absolute bottom-20 -right-12 w-64 glass-card p-6 rounded-3xl shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-600 flex items-center justify-center">
-                <Brain size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-[#1E3A8A]">AI Doubts</h4>
-                <p className="text-xs text-[#64748B]">24/7 Intelligent assistance</p>
-              </div>
+                    {/* CTA Button */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.2, duration: 0.8 }}
+                        className="pt-4"
+                    >
+                        <Button 
+                            className="bg-blue-800 hover:bg-blue-900 hover:-translate-y-1 text-white px-8 py-7 text-base rounded-lg font-bold shadow-lg shadow-blue-500/25 transition-all duration-300 group font-['Space_Grotesk']"
+                        >
+                            <span>Get Started</span>
+                            <span className="ml-1 transition-opacity opacity-70 group-hover:opacity-100">/curio</span>
+                            <ArrowRight className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Button>
+                    </motion.div>
+                </div>
             </div>
-
-            <div className="floating-card absolute top-1/2 -translate-y-1/2 -right-6 w-64 glass-card p-6 rounded-3xl shadow-xl flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
-                <Globe size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-[#1E3A8A]">Industry Exposure</h4>
-                <p className="text-xs text-[#64748B]">Bridge to the real world</p>
-              </div>
+             {/* Scroll Indicator */}
+            <div className="absolute z-10 hidden -translate-x-1/2 bottom-8 left-1/2 text-white/50 animate-bounce md:block">
+                <ChevronDown className="w-10 h-10" />
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default HeroSection;

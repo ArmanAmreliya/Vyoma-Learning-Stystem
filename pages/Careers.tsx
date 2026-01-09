@@ -1,85 +1,199 @@
-
 import React from 'react';
-import Section from '../components/Section';
-import { motion } from 'framer-motion';
-import { Briefcase, Calendar, Sparkles, Code, PenTool, Layout } from 'lucide-react';
+import Section from '../components/SectionWrapper';
+import ScrollReveal from '../components/ScrollReveal';
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Careers: React.FC = () => {
-  const roles = [
-    { title: 'Frontend Intern', icon: <Layout />, duration: '3 Months', desc: 'Build immersive UI for Curio using React and GSAP.' },
-    { title: '3D Content Creator', icon: <PenTool />, duration: '3 Months', desc: 'Help visualize complex physics concepts in Blender.' },
-    { title: 'Fullstack Dev (Node.js)', icon: <Code />, duration: '6 Months', desc: 'Work on our core learning management systems.' }
-  ];
-
   return (
-    <div className="bg-[#F8FAFC]">
-      <header className="py-24 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-bold text-[#1E3A8A] mb-8"
-          >
-            Join the <span className="text-gradient">Team</span>
-          </motion.h1>
-          <p className="text-xl text-[#64748B] max-w-3xl mx-auto leading-relaxed">
-            We don't just offer internships; we offer career-defining experiences. Our learning-first philosophy means you build real products from day one.
-          </p>
-        </div>
-      </header>
+    <div className="pt-20">
+      <SectionWrapper>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-light text-slate-900 mb-6 tracking-tight">Careers at Vyoma</h1>
+            <p className="text-xl text-slate-600 leading-relaxed font-light">
+              We build education platforms that prioritize conceptual understanding over 
+              rote learning. Join a team focused on long-term impact in the education sector.
+            </p>
+          </div>
+        </ScrollReveal>
+      </SectionWrapper>
+
+      <Section dark>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-light text-white mb-6">Who We Hire</h2>
+            <p className="text-slate-400 mb-6 leading-relaxed text-lg font-light">
+              Vyoma seeks professionals with deep expertise in education technology, 
+              software engineering, content development, and data science. We value 
+              experience in building scalable systems and understanding of learning science.
+            </p>
+            <p className="text-slate-400 leading-relaxed text-lg font-light">
+              Our team includes educators, engineers, designers, and researchers committed 
+              to improving education outcomes through technology and pedagogy.
+            </p>
+          </div>
+        </ScrollReveal>
+      </Section>
 
       <Section>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
-          <div>
-            <h2 className="text-4xl font-bold text-[#1E3A8A] mb-6">Our Philosophy</h2>
-            <p className="text-[#64748B] text-lg mb-6 leading-relaxed">
-              We believe the best way to learn is by doing. At Vyoma, interns are treated like founders. You take ownership of a feature, learn the stack, and see your code live in front of thousands of students.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl border border-blue-100">
-                <Calendar className="text-[#1E3A8A]" />
-                <span className="font-bold text-[#1E3A8A]">Duration: 3-6 Months</span>
-              </div>
-              <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-2xl border border-orange-100">
-                <Sparkles className="text-orange-600" />
-                <span className="font-bold text-orange-600">Performance-based stipends</span>
-              </div>
-            </div>
-          </div>
-          <div className="relative">
-            <img src="https://picsum.photos/800/600?random=20" alt="Office Culture" className="rounded-[40px] shadow-2xl" />
-            <div className="absolute -bottom-6 -right-6 p-8 bg-white rounded-3xl shadow-xl border border-gray-100 max-w-[200px]">
-              <h4 className="font-bold text-[#1E3A8A] text-3xl mb-1">100%</h4>
-              <p className="text-xs text-[#64748B]">Intern-to-full-time conversion rate in 2023</p>
-            </div>
-          </div>
-        </div>
+        <ScrollReveal>
+          <h2 className="text-3xl font-light text-slate-900 mb-12">Current Openings</h2>
+        </ScrollReveal>
+        <div className="space-y-6 max-w-3xl">
+          <ScrollReveal delay={0.1}>
+            <Card>
+              <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0 pb-2">
+                <CardTitle className="text-xl font-medium text-slate-900">Senior Software Engineer</CardTitle>
+                <span className="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full w-fit">Full-time • Remote</span>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Build and maintain backend systems for Curio platform. Requires 4+ years 
+                  experience with Node.js, PostgreSQL, and distributed systems.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-700 font-medium" asChild>
+                  <Link to="/contact">Apply <ArrowRight className="ml-1 w-4 h-4" /></Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </ScrollReveal>
 
-        <h3 className="text-3xl font-bold text-[#1E3A8A] mb-12 text-center">Open Internship Roles</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {roles.map((role, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -10 }}
-              className="p-8 bg-white rounded-[30px] shadow-lg border border-gray-50 flex flex-col h-full"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#06B6D4]/10 text-[#06B6D4] flex items-center justify-center mb-6">
-                {role.icon}
-              </div>
-              <h4 className="text-2xl font-bold text-[#1E3A8A] mb-2">{role.title}</h4>
-              <div className="flex items-center gap-2 text-sm text-[#64748B] mb-4">
-                <Calendar size={14} /> {role.duration}
-              </div>
-              <p className="text-[#64748B] mb-8 flex-grow">{role.desc}</p>
-              <button className="w-full py-4 rounded-xl border-2 border-[#1E3A8A] text-[#1E3A8A] font-bold hover:bg-[#1E3A8A] hover:text-white transition-all">
-                Apply Now
-              </button>
-            </motion.div>
-          ))}
+          <ScrollReveal delay={0.2}>
+            <Card>
+              <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0 pb-2">
+                <CardTitle className="text-xl font-medium text-slate-900">3D Content Developer</CardTitle>
+                <span className="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full w-fit">Full-time • Hybrid</span>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Create scientific concept visualizations for Curio. Experience with Blender, 
+                  Unity, or similar 3D tools required. Background in science education preferred.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-700 font-medium" asChild>
+                  <Link to="/contact">Apply <ArrowRight className="ml-1 w-4 h-4" /></Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <Card>
+              <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0 pb-2">
+                <CardTitle className="text-xl font-medium text-slate-900">Data Scientist</CardTitle>
+                <span className="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full w-fit">Full-time • Remote</span>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Analyze student performance data to improve learning outcomes. Experience 
+                  with Python, statistical modeling, and education analytics required.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-700 font-medium" asChild>
+                  <Link to="/contact">Apply <ArrowRight className="ml-1 w-4 h-4" /></Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <Card>
+              <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between space-y-2 md:space-y-0 pb-2">
+                <CardTitle className="text-xl font-medium text-slate-900">Frontend Engineer</CardTitle>
+                <span className="text-sm text-slate-500 font-medium bg-slate-100 px-3 py-1 rounded-full w-fit">Full-time • Remote</span>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-600 mb-4">
+                  Develop user interfaces for Vyoma platforms. Strong React, TypeScript, and 
+                  responsive design skills required. 3+ years professional experience.
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button variant="link" className="p-0 h-auto text-blue-600 hover:text-blue-700 font-medium" asChild>
+                  <Link to="/contact">Apply <ArrowRight className="ml-1 w-4 h-4" /></Link>
+                </Button>
+              </CardFooter>
+            </Card>
+          </ScrollReveal>
         </div>
+      </Section>
+
+      <Section dark>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h2 className="text-3xl font-light text-white mb-6">Application Process</h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl text-white mb-2 font-medium">1. Initial Application</h3>
+                <p className="text-slate-400 font-light">
+                  Submit resume and cover letter explaining relevant experience and interest 
+                  in education technology.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl text-white mb-2 font-medium">2. Technical Assessment</h3>
+                <p className="text-slate-400 font-light">
+                  Complete role-specific technical evaluation (coding challenge, portfolio 
+                  review, or case study).
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl text-white mb-2 font-medium">3. Team Interview</h3>
+                <p className="text-slate-400 font-light">
+                  Discussion with hiring manager and team members about technical approach, 
+                  problem-solving, and cultural fit.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl text-white mb-2 font-medium">4. Offer & Onboarding</h3>
+                <p className="text-slate-400 font-light">
+                  Formal offer with compensation details, followed by structured onboarding 
+                  process and team integration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </Section>
+
+      <Section>
+        <ScrollReveal>
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl font-light text-slate-900 mb-6">Don't See Your Role?</h2>
+            <p className="text-slate-600 mb-8 leading-relaxed font-light">
+              We're always interested in connecting with talented professionals in education 
+              technology. Send your resume and areas of interest to our team.
+            </p>
+            <Button size="lg" className="bg-slate-900 text-white hover:bg-slate-800" asChild>
+              <Link to="/contact">Contact Hiring Team</Link>
+            </Button>
+          </div>
+        </ScrollReveal>
       </Section>
     </div>
   );
 };
+
+// Helper component for section wrapper to match other pages
+const SectionWrapper = ({
+  children,
+  dark,
+  className = "",
+}: {
+  children: React.ReactNode;
+  dark?: boolean;
+  className?: string;
+}) => (
+  <Section dark={dark} className={className}>
+    {children}
+  </Section>
+);
 
 export default Careers;

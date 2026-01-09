@@ -1,113 +1,261 @@
-
 import React from 'react';
-import Section from '../components/Section';
-import FeatureCard from '../components/FeatureCard';
-import { motion } from 'framer-motion';
-import { Box, Bot, Clock, BarChart3, GraduationCap, ChevronRight } from 'lucide-react';
+import Section from '../components/SectionWrapper';
+import ScrollReveal from '../components/ScrollReveal';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Link } from 'react-router-dom';
+import { CheckCircle2, Cuboid, BrainCircuit, BarChart3, Target } from 'lucide-react';
 
 const Curio: React.FC = () => {
   return (
-    <div className="bg-[#F8FAFC]">
-      {/* Hero */}
-      <header className="relative py-24 md:py-32 overflow-hidden bg-white">
-        <div className="absolute top-0 right-0 w-[40%] h-full bg-[#1E3A8A]/5 -skew-x-12 transform origin-top-right" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#06B6D4]/10 text-[#06B6D4] text-xs font-bold uppercase tracking-widest mb-6">
-              Class 11 & 12 Specialized
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-[#1E3A8A] leading-tight mb-8">
-              Learn Science Through <span className="text-gradient">3D Visualization</span>
-            </h1>
-            <p className="text-xl text-[#64748B] leading-relaxed mb-10">
-              Don't just read about Physics and Chemistry—interact with them. Curio brings complex STEM concepts to life with immersive 3D models.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="px-10 py-5 rounded-2xl gradient-main text-white font-bold hover:shadow-2xl transition-all">Get Started Free</button>
-              <button className="px-10 py-5 rounded-2xl bg-white border-2 border-gray-200 text-[#1E3A8A] font-bold hover:bg-gray-50 transition-all">Watch Demo</button>
-            </div>
-          </div>
-          <div className="relative">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-10"
-            >
-              <img src="https://picsum.photos/1000/1000?random=13" alt="Curio Visualization" className="rounded-[40px] shadow-2xl" />
-            </motion.div>
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#F59E0B] rounded-full blur-[100px] opacity-20" />
-          </div>
-        </div>
-      </header>
-
-      {/* Feature Grid */}
+    <div className="pt-20">
       <Section>
-        <div className="text-center mb-20">
-          <h2 className="text-4xl font-bold text-[#1E3A8A] mb-6">Built for Deep Understanding</h2>
-          <p className="text-[#64748B] text-xl max-w-2xl mx-auto">Five core features that make Curio India's preferred science companion.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard icon={<Box />} title="3D Models" description="Explore biological cells, molecular structures, and engine parts in full 360-degree interactives." />
-          <FeatureCard icon={<Bot />} title="AI Assistant" description="Get instant answers to 'Why?' and 'How?' with our 24/7 intelligent doubt-solving bot." />
-          <FeatureCard icon={<Clock />} title="Time Tracking" description="Stay productive with built-in Pomodoro timers and session management." />
-          <FeatureCard icon={<BarChart3 />} title="Performance Analytics" description="Identify your weak spots with granular data insights on your quiz results." />
-          <FeatureCard icon={<GraduationCap />} title="Quiz Engine" description="Gamified adaptive testing that gets harder as you get smarter." />
-          <div className="p-8 rounded-[24px] bg-gradient-to-br from-[#1E3A8A] to-[#06B6D4] text-white flex flex-col justify-center items-center text-center">
-            <h4 className="text-2xl font-bold mb-4">And Much More</h4>
-            <p className="mb-6 opacity-80">We release new 3D modules every single month.</p>
-            <button className="text-white font-bold flex items-center gap-2">Explore All <ChevronRight size={18} /></button>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <div className="mb-16">
+              <img 
+                src="/CURIO TRANSPARENT.png" 
+                alt="Curio" 
+                className="w-auto h-64 md:h-64"
+              />
+            </div>
+            <h1 className="mb-6 text-5xl font-light tracking-tight md:text-6xl text-slate-900">Curio Learning Platform</h1>
+            <p className="text-xl font-light leading-relaxed md:text-2xl text-slate-600">
+              A 3D visualization-based learning environment for Class 11–12 science students, 
+              providing concept mastery tools for Physics, Chemistry, and Biology.
+            </p>
           </div>
+        </ScrollReveal>
+      </Section>
+
+      <Section dark>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h2 className="mb-6 text-3xl font-light text-white">Platform Overview</h2>
+            <p className="mb-6 text-lg font-light leading-relaxed text-slate-400">
+              Curio addresses the challenge of abstract scientific concepts by providing 
+              interactive 3D models that students can manipulate and explore. The platform 
+              combines visualization with structured practice and AI-driven support.
+            </p>
+            <p className="text-lg font-light leading-relaxed text-slate-400">
+              Content aligns with CBSE, ICSE, and major state board curricula, covering 
+              full syllabi for Classes 11 and 12 across science streams.
+            </p>
+          </div>
+        </ScrollReveal>
+      </Section>
+
+      <Section>
+        <ScrollReveal>
+          <h2 className="mb-12 text-3xl font-light text-slate-900">Core Features</h2>
+        </ScrollReveal>
+        <div className="grid max-w-4xl gap-8 md:grid-cols-2">
+          <ScrollReveal delay={0.1}>
+            <Card className="h-full bg-white shadow-sm border-slate-100">
+              <CardHeader>
+                <Cuboid className="w-8 h-8 mb-2 text-blue-600" />
+                <CardTitle className="text-xl font-medium text-slate-900">3D Concept Models</CardTitle>
+                <CardDescription className="text-slate-500">
+                  Interactive visualizations for molecular structures, physical systems, 
+                  wave phenomena, and biological processes.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    <span>Rotate, zoom, and manipulate models</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    <span>Step-by-step construction animations</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-blue-500 shrink-0" />
+                    <span>Cross-sectional and exploded views</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <Card className="h-full bg-white shadow-sm border-slate-100">
+              <CardHeader>
+                <BrainCircuit className="w-8 h-8 mb-2 text-purple-600" />
+                <CardTitle className="text-xl font-medium text-slate-900">AI Doubt Engine</CardTitle>
+                <CardDescription className="text-slate-500">
+                  Natural language query processing with contextual explanations and 
+                  worked problem solutions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-purple-500 shrink-0" />
+                    <span>24/7 availability, no wait times</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-purple-500 shrink-0" />
+                    <span>Step-by-step solution breakdowns</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-purple-500 shrink-0" />
+                    <span>Related concept recommendations</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <Card className="h-full bg-white shadow-sm border-slate-100">
+              <CardHeader>
+                <BarChart3 className="w-8 h-8 mb-2 text-emerald-600" />
+                <CardTitle className="text-xl font-medium text-slate-900">Performance Analytics</CardTitle>
+                <CardDescription className="text-slate-500">
+                  Granular tracking of topic-level mastery with historical performance 
+                  data and weakness identification.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <span>Topic-wise strength analysis</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <span>Time-spent tracking per concept</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
+                    <span>Improvement trend visualization</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <Card className="h-full bg-white shadow-sm border-slate-100">
+              <CardHeader>
+                <Target className="w-8 h-8 mb-2 text-orange-600" />
+                <CardTitle className="text-xl font-medium text-slate-900">Practice Systems</CardTitle>
+                <CardDescription className="text-slate-500">
+                  Structured problem sets with adaptive difficulty based on demonstrated 
+                  mastery levels.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                    <span>Chapter-wise question banks</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                    <span>Board exam pattern practice</span>
+                  </li>
+                  <li className="flex items-start gap-2 text-sm text-slate-600">
+                    <CheckCircle2 className="w-5 h-5 text-orange-500 shrink-0" />
+                    <span>Instant feedback and hints</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
         </div>
       </Section>
 
-      {/* CTA Form */}
-      <Section className="bg-white">
-        <div className="max-w-5xl mx-auto bg-[#F8FAFC] rounded-[50px] overflow-hidden shadow-xl grid grid-cols-1 lg:grid-cols-2">
-          <div className="p-12 md:p-16 bg-[#1E3A8A] text-white">
-            <h3 className="text-3xl font-bold mb-6">Ready to transform your grades?</h3>
-            <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-              Join 50,000+ students already mastering science with Curio. Sign up for a free demo session today.
-            </p>
-            <div className="space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">✓</div>
-                <span>Free 7-day trial</span>
+      <Section dark>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h2 className="mb-8 text-3xl font-light text-white">Curriculum Coverage</h2>
+            <div className="space-y-8">
+              <div>
+                <h3 className="mb-2 text-xl font-medium text-white">Physics</h3>
+                <p className="text-sm font-light text-slate-400">
+                  Mechanics, Thermodynamics, Electromagnetism, Optics, Modern Physics, 
+                  Waves, and Oscillations
+                </p>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">✓</div>
-                <span>Full access to 3D library</span>
+              <div>
+                <h3 className="mb-2 text-xl font-medium text-white">Chemistry</h3>
+                <p className="text-sm font-light text-slate-400">
+                  Physical Chemistry, Organic Chemistry, Inorganic Chemistry, Chemical 
+                  Bonding, Thermochemistry, Electrochemistry
+                </p>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">✓</div>
-                <span>1-on-1 counselor call</span>
+              <div>
+                <h3 className="mb-2 text-xl font-medium text-white">Biology</h3>
+                <p className="text-sm font-light text-slate-400">
+                  Cell Biology, Genetics, Evolution, Plant Physiology, Human Physiology, 
+                  Ecology, Biotechnology
+                </p>
               </div>
             </div>
           </div>
-          <div className="p-12 md:p-16">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <label className="block text-sm font-bold text-[#1E3A8A] mb-2">Full Name</label>
-                <input type="text" className="w-full px-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] transition-all" placeholder="John Doe" />
+        </ScrollReveal>
+      </Section>
+
+      <Section>
+        <ScrollReveal>
+          <div className="max-w-3xl">
+            <h2 className="mb-8 text-3xl font-light text-slate-900">Who Should Use Curio</h2>
+            <div className="space-y-8">
+              <div className="pb-8 border-b border-slate-100">
+                <h3 className="mb-2 text-xl font-medium text-slate-900">Individual Students</h3>
+                <p className="font-light leading-relaxed text-slate-600">
+                  Class 11–12 students seeking concept clarity, doubt resolution, and 
+                  structured practice for board exams and competitive tests.
+                </p>
+              </div>
+              <div className="pb-8 border-b border-slate-100">
+                <h3 className="mb-2 text-xl font-medium text-slate-900">Schools & Institutions</h3>
+                <p className="font-light leading-relaxed text-slate-600">
+                  Educational institutions looking to supplement classroom teaching with 
+                  visualization tools and performance tracking systems.
+                </p>
               </div>
               <div>
-                <label className="block text-sm font-bold text-[#1E3A8A] mb-2">Email Address</label>
-                <input type="email" className="w-full px-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] transition-all" placeholder="john@example.com" />
+                <h3 className="mb-2 text-xl font-medium text-slate-900">Coaching Centers</h3>
+                <p className="font-light leading-relaxed text-slate-600">
+                  Tutoring and coaching organizations seeking scalable tools for concept 
+                  reinforcement and student engagement.
+                </p>
               </div>
-              <div>
-                <label className="block text-sm font-bold text-[#1E3A8A] mb-2">Current Class</label>
-                <select className="w-full px-6 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#06B6D4] transition-all bg-white">
-                  <option>Class 11</option>
-                  <option>Class 12</option>
-                  <option>Dropper</option>
-                </select>
-              </div>
-              <button className="w-full py-5 rounded-xl gradient-main text-white font-bold text-lg hover:shadow-xl transition-all shadow-blue-500/20 active:scale-[0.98]">
-                Submit Application
-              </button>
-            </form>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
+      </Section>
+
+      <Section dark>
+        <ScrollReveal>
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="mb-6 text-3xl font-light text-white">Access Curio</h2>
+            <p className="mb-8 font-light leading-relaxed text-slate-400">
+              The platform is available for individual students and institutional partners. 
+              Visit the Curio website for registration and access details.
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100" asChild>
+                <a 
+                  href="https://curio.vyoma.in" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  Visit Curio Platform →
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" className="text-white border-slate-700 hover:bg-slate-800 hover:text-white" asChild>
+                <Link to="/contact">
+                  Institutional Licensing
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </ScrollReveal>
       </Section>
     </div>
   );
